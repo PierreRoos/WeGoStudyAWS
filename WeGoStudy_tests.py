@@ -1,13 +1,15 @@
 import unittest
-import WeGoStudy_locators as locators
-import WeGoStudy_methods as methods
+import wegostudy_locators as locators
+import wegostudy_methods as methods
 
-class PositiveTestCases(unittest.TestCase):
+class WegostudyAppPostiveTestCases(unittest.TestCase):
+
     @staticmethod
-    def test_create_new_user():
+    def test_main_wegostudy():
         methods.setUp()
-        methods.login()
+        methods.log_in()
         methods.create_new_student()
-        methods.logout()
+        methods.create_new_application()
+        methods.view_details()
+        methods.log_out()
         methods.tearDown()
-        
