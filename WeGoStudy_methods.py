@@ -1,28 +1,24 @@
-from selenium import webdriver
+
 from time import sleep
 import datetime
-
-from selenium.webdriver.common.by import By
 import wegostudy_locators as locators
 from selenium.webdriver.support.ui import Select
-
-from selenium.webdriver import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import random
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
-s = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=s)
 
-
-# s = Service(executable_path='../chromedriver.exe')
+# s = Service(ChromeDriverManager().install())
 # driver = webdriver.Chrome(service=s)
 
 
-
-
+s = Service(executable_path='../chromedriver.exe')
+driver = webdriver.Chrome(service=s)
 
 
 def setUp():
@@ -52,6 +48,57 @@ def tearDown():
         sleep(1.5)
         driver.close()
         driver.quit()
+
+
+# def create_account():
+#     driver.find_element(By.XPATH, '//a[contains(@class,"z-index__2 montserrat-font")]//b[contains(text(),"CREATE AN ACCOUNT")]').click()
+#     sleep(0.75)
+#     driver.find_element(By.XPATH, '//span[@id="partner"]').click()
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_first_name').send_keys(locators.first_name)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_last_name').send_keys(locators.last_name)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_date_of_birth').send_keys('1')
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_date_of_birth').send_keys(10 * Keys.BACKSPACE)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_date_of_birth').send_keys(locators.date_of_birth)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'select2-user_partner_detail_attributes_country_of_citizenship-container').click()
+#     sleep(0.75)
+#     driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(locators.country)
+#     sleep(0.75)
+#     driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(Keys.RETURN)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'partner_phone_number').send_keys(locators.phone_number)
+#     sleep(0.75)
+#
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_address_attributes_mailing_address').send_keys(locators.address)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_address_attributes_mailing_address').send_keys(Keys.RETURN)
+#     sleep(0.75)
+#     driver.find_element(By.LINK_TEXT, 'Country').click()
+#     sleep(0.75)
+#     driver.find_element(By.XPATH, '//*[@id="user_partner_detail_attributes_address_attributes_country_chosen"]/div/div/input').send_keys(f'Canada{Keys.ENTER}')
+#     sleep(0.75)
+#     driver.find_element(By.ID,'user_partner_detail_attributes_address_attributes_state_chosen').click()
+#     sleep(0.75)
+#     driver.find_element(By.XPATH, '//*[@id="user_partner_detail_attributes_address_attributes_state_chosen"]/div/ul/li[2]').click()
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_address_attributes_city_chosen').click()
+#     sleep(0.75)
+#     driver.find_element(By.XPATH, '//*[@id="user_partner_detail_attributes_address_attributes_city_chosen"]/div/ul/li[4]').click()
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_partner_detail_attributes_address_attributes_zip_code').send_keys(locators.postalcode)
+#     sleep(0.75)
+#     driver.find_element(By.XPATH, '//div[@id="form_partner"]//input[@id="user_email"]').send_keys(locators.admin_email)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_password').send_keys(locators.admin_password)
+#     sleep(0.75)
+#     driver.find_element(By.ID, 'user_password_confirmation').send_keys(locators.admin_password)
+#     sleep(0.75)
+
 
 
 def log_in():
@@ -139,15 +186,10 @@ def create_new_student():
         sleep(0.75)
         driver.find_element(By.XPATH,'//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(Keys.RETURN)
         sleep(0.75)
-
-
         driver.find_element(By.ID, 'user_student_detail_attributes_user_educations_attributes_0_school_name').click()
         sleep(0.75)
         driver.find_element(By.XPATH, '//input[@id="user_student_detail_attributes_user_educations_attributes_0_school_name"]').send_keys(locators.school)
         sleep(0.75)
-        # driver.find_element(By.XPATH,'//*[@id="user_student_detail_attributes_user_educations_attributes_0_school_name"]/div/div/input').send_keys(Keys.RETURN)
-        # sleep(1)
-
         driver.find_element(By.XPATH, '//input[@id="user_student_detail_attributes_user_educations_attributes_0_program"]').send_keys(locators.program)
         sleep(0.75)
         driver.find_element(By.XPATH, '//span[contains(., "GPA Scale")]').click()
@@ -250,9 +292,9 @@ def view_details():
     # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
     sleep(1.25)
     driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
-    sleep(0.75)
-    driver.find_element(By.XPATH, '//a[@href="/partners/student_details/leah-gilmore"]').click()
     sleep(4)
+    driver.find_element(By.XPATH, '//a[@href="/partners/student_details/christopher-knapp"]').click()
+    sleep(2)
     driver.find_element(By.XPATH, '//body//form').click()
     sleep(6)
 
@@ -270,6 +312,7 @@ def log_out():
 
 
 setUp()
+# create_account()
 log_in()
 create_new_student()
 create_new_application()
