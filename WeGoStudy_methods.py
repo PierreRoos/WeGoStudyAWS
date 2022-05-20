@@ -219,6 +219,60 @@ def view_details():
     driver.find_element(By.XPATH, '//body//form').click()
     sleep(6)
 
+def edit_student_details():
+    print(f'***************** Edit Student Details ******************')
+    driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
+    # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
+    sleep(4)
+    driver.find_element(By.XPATH, '//a[@href="/partners/student_details/christopher-knapp"]').click()
+    sleep(2)
+    # driver.find_element(By.XPATH, '//body//form').click()
+    # sleep(6)
+    # select country
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_address_attributes_country_chosen"]/div/div/input').send_keys(
+        'Mexico')
+    sleep(0.25)
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_address_attributes_country_chosen"]/div/div/input').send_keys(
+        Keys.RETURN)
+    sleep(0.25)
+
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
+        'Master')
+    sleep(0.25)
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
+        Keys.RETURN)
+    sleep(0.25)
+
+    for i in range(len(locators.lst_column)):
+        clm, fid, val = locators.lst_column[i], locators.lst_id[i], locators.lst_value[i]
+        driver.find_element(By.ID, fid).send_keys(str(val))
+        sleep(0.25)
+
+    driver.find_element(By.XPATH, '//body//form').click()
+    sleep(6)
+
+    # driver.find_element(By.XPATH, '//input[@value="Save"]').click()
+    # sleep(5)
+    # driver.find_element(By.CLASS_NAME, 'toast-message').is_displayed()
+    # sleep(5)
+
+
+# setUp()
+# login()
+# create_new_student()
+# create_new_application()
+# view_details()
+# edit student details()
+# logout()
+# tearDown()
+    
+
 # setUp()
 # login()
 # create_new_student()
