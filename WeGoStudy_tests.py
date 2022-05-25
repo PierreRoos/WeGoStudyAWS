@@ -11,6 +11,6 @@ class PositiveTestCases(unittest.TestCase):
         # methods.create_new_application()  # bug in website - doesnt work
         # methods.view_student_details() # view student details is implicit in edit student details
         methods.edit_student_details()
-        # methods.edit_applications()  # function not complete yet
+        methods.view_application_list()
         methods.logout()
         methods.tearDown()

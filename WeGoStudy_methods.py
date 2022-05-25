@@ -262,33 +262,30 @@ def edit_student_details():
     # driver.find_element(By.CLASS_NAME, 'toast-message').is_displayed()
     # sleep(5)
 
-def edit_applications(): # need to close window still
-    print(f'***************** edit_applications ******************')
+def view_application_list():
+    print(f'***************** View Application list for one student  ******************')
     driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
-    # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
     sleep(1.25)
     driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
+    sleep(4)
+    driver.find_element(By.XPATH, '//div[@id="student_list"]//div[1]//div[3]//a[3]').click()
     sleep(2)
-    driver.find_element(By.LINK_TEXT, 'View Applications').click()
-    sleep(0.25)
-
-
-    # driver.find_element(By.CLASS_NAME, 'btn btn-default btn-sm').click()
     # driver.find_element(By.CSS_SELECTOR, '.btn.btn-default.btn-sm').click()
-    # driver.find_element(By.XPATH, '//button[@class="btn btn-default btn-sm"]').click()
-    # driver.find_element(By.XPATH, '//button[text()="Close"]').click()
-    # driver.find_element(By.XPATH, f'//div[contains(., "modal-content")]/../button[contains(., "btn btn-default btn-sm")]').click()
-    # /html[1]/body[1]/div[4]/div[1]/div[1]/div[2]/div[2]/button[1] #  abs xpath
+    driver.find_element(By.XPATH, '//button[@class="btn btn-default btn-sm"]').click()
+    sleep(2)
 
-# //button[@class='btn btn-default btn-sm']  #  Selectorshub Xpath
-# .btn.btn-default.btn-sm  #  SelectorsHub CSS
-# (By.XPATH, f'//td[contains(., "{locators.full_name}")]/../td[contains(., "{locators.email}")]').is_displayed() # example?
+
+
+
+
+
+
 
 # setUp()
 # login()
 # create_new_student()
 # create_new_application()
 # edit_student_details()
-# edit_applications()
+# view_application_list()
 # logout()
 # tearDown()
