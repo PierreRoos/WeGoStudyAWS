@@ -1,25 +1,35 @@
-
-from time import sleep
 import datetime
-import wegostudy_locators as locators
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 import random
+from time import sleep
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver import Keys
+from selenium.common.exceptions import NoSuchElementException
+import WeGoStudy_locators as locators
+#from webdriver_manager.chrome import ChromeDriverManager
 
+# AWS HEADLESS MODE
+from selenium.webdriver.chrome.options import Options
 
-# s = Service(ChromeDriverManager().install())
+options = Options()
+options.add_argument("--headless")
+options.add_argument("window-size=1400,1500")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+options.add_argument("start-maximized")
+options.add_argument("enable-automation")
+options.add_argument("--disable-infobars")
+options.add_argument("--disable-dev-shm-usage")
+
+driver = webdriver.Chrome(options=options)
+
+# s = Service(executable_path='../chromedriver.exe')
 # driver = webdriver.Chrome(service=s)
 
-
-s = Service(executable_path='../chromedriver.exe')
-driver = webdriver.Chrome(service=s)
-
+# s=Service(ChromeDriverManager().install())
+# driver = webdriver.Chrome(service=s)
 
 def setUp():
     print(f'Test starts at {datetime.datetime.now()}.')
@@ -37,7 +47,6 @@ def setUp():
         driver.close()
         driver.quit()
 
-
 def tearDown():
     if driver is not None:
         print(f'---------The test is passed.----------------')
@@ -45,7 +54,6 @@ def tearDown():
         sleep(0.5)
         driver.close()
         driver.quit()
-
 
 def login():
     driver.find_element(By.XPATH, '//b[normalize-space()="LOGIN"]').click()
@@ -56,10 +64,9 @@ def login():
     sleep(0.25)
     driver.find_element(By.XPATH, '//input[@value="SIGN IN"]').click()
     sleep(0.5)
-    driver.find_element(By.ID, 'authentication-popup').is_displayed()
+    driver.find_element(By.ID,'authentication-popup').is_displayed()
     sleep(3)
     print('------------Signed up successfully!-----------------')
-
 
 def logout():
     driver.find_element(By.CSS_SELECTOR, 'span[class="my-auto mr-2 pf-name"]').click()
@@ -72,13 +79,13 @@ def logout():
 
 
 def create_new_student():
-    if driver.current_url == locators.login_page_url:
+    if driver.current_url==locators.login_page_url:
         print(f'----------Current URL: {locators.login_page_url}--------')
     driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
     sleep(0.25)
     driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
     sleep(0.25)
-    if driver.current_url == locators.student_page_url:
+    if driver.current_url==locators.student_page_url:
         print(f'-------------Create New Student----------------------')
     driver.find_element(By.XPATH, '//a[normalize-space()="Create New Student"]').click()
     sleep(0.25)
@@ -86,7 +93,7 @@ def create_new_student():
     # date of birth
     driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys('1')
     sleep(1.5)
-    driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys(10 * Keys.BACKSPACE)
+    driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys(10*Keys.BACKSPACE)
     sleep(1.5)
     driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys(locators.birthday)
     sleep(0.5)
@@ -110,6 +117,7 @@ def create_new_student():
     # driver.find_element(By.XPATH, f'//li[@data-option-array-index="{x}"]').click()
     # sleep(0.5)
 
+
     # select province
     driver.find_element(By.XPATH, '//span[text()="Province/State"]').click()
     sleep(0.5)
@@ -125,8 +133,7 @@ def create_new_student():
     driver.find_element(By.XPATH, '//span[text()="City"]').click()
     sleep(0.5)
 
-    driver.find_element(By.XPATH,
-                        '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/ul/li[2]').click()
+    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/ul/li[2]').click()
     sleep(0.5)
     # driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/div/input').send_keys(Keys.RETURN)
     # sleep(0.25)
@@ -134,26 +141,19 @@ def create_new_student():
     # select Credentials
     driver.find_element(By.XPATH, '//span[contains(., "Credentials")]').click()
     sleep(0.25)
-    driver.find_element(By.XPATH,
-                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
-        'Degree')
+    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys('Degree')
     sleep(0.25)
-    driver.find_element(By.XPATH,
-                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
-        Keys.RETURN)
+    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(Keys.RETURN)
     sleep(0.25)
 
     # select GPA Scale
     driver.find_element(By.XPATH, '//span[contains(., "GPA Scale")]').click()
     sleep(0.25)
-    driver.find_element(By.XPATH,
-                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys(
-        '100')
+    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys('100')
     sleep(0.25)
-    driver.find_element(By.XPATH,
-                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys(
-        Keys.RETURN)
+    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys(Keys.RETURN)
     sleep(0.25)
+
 
     for i in range(len(locators.lst_column)):
         clm, fid, val = locators.lst_column[i], locators.lst_id[i], locators.lst_value[i]
@@ -168,13 +168,13 @@ def create_new_student():
 
 
 def create_new_application():
-    print(f'*****************Course Information******************')
+    print(f'***************** create_new_application ******************')
 
     driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
     # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
     sleep(1.25)
     driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
-    sleep(0.75)
+    sleep(1.5)
     driver.find_element(By.LINK_TEXT, 'Create Application').click()
     sleep(0.75)
     driver.find_element(By.XPATH, '//span[normalize-space()="Select School"]').click()
@@ -207,6 +207,7 @@ def create_new_application():
     sleep(4)
     print('-------------application is created successfully.-----------')
 
+
 def view_student_details():
     print(f'***************** View Details ******************')
     driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
@@ -218,6 +219,7 @@ def view_student_details():
     sleep(2)
     driver.find_element(By.XPATH, '//body//form').click()
     sleep(6)
+
 
 def edit_student_details():
     print(f'***************** Edit Student Details ******************')
@@ -256,11 +258,12 @@ def edit_student_details():
 
     driver.find_element(By.XPATH, '//body//form').click()
     sleep(6)
-
+    print(f'***************** Student Details edited ******************')
     # driver.find_element(By.XPATH, '//input[@value="Save"]').click()
     # sleep(5)
     # driver.find_element(By.CLASS_NAME, 'toast-message').is_displayed()
     # sleep(5)
+
 
 def view_application_list():
     print(f'***************** View Application list for one student  ******************')
@@ -273,6 +276,8 @@ def view_application_list():
     # driver.find_element(By.CSS_SELECTOR, '.btn.btn-default.btn-sm').click()
     driver.find_element(By.XPATH, '//button[@class="btn btn-default btn-sm"]').click()
     sleep(2)
+
+
 
 def commissions():
     print(f' ************ Commissions ************************************')
@@ -325,6 +330,27 @@ def filter_by_program():
     sleep(6)
 
 
+def schools():
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(0.5)
+    original_window = driver.current_window_handle
+    driver.find_element(By.XPATH, '//a[contains(., "Visit College Website")]').click()
+    print('-----------Visit College Website Successfully.------------')
+    sleep(5)
+    driver.switch_to.window(original_window)
+    sleep(1)
+    driver.find_element(By.XPATH, '//a[contains(., "Tution")]').click()
+    print('----------------------Tuition website opened.-------------')
+    sleep(5)
+    driver.switch_to.window(original_window)
+    sleep(1)
+    driver.find_element(By.XPATH, '//*[@id="featured_institutes"]/div[2]/div[3]/a/div').click()
+    print('-----------We can launch the college website successfully---------')
+    sleep(5)
+
+
+
+
 # setUp()
 # login()
 # create_new_student()
@@ -335,5 +361,8 @@ def filter_by_program():
 # filter_by_study_area()
 # filter_by_city()
 # filter_by_program()
+# schools()
 # logout()
 # tearDown()
+
+

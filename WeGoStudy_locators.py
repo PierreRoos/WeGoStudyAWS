@@ -7,7 +7,7 @@ faker = Faker()
 
 
 app = 'WeGoStudy'
-app_url = 'https://www.wegostudy.ca/partner/home'
+app_url = 'https://www.wegostudy.ca/'
 homepage_title = 'WeGoStudy'
 admin_email = 'pewec@protonmail.com'
 admin_password = '789WeStudy!'

@@ -2,6 +2,7 @@ import unittest
 import WeGoStudy_locators as locators
 import WeGoStudy_methods as methods
 
+
 class PositiveTestCases(unittest.TestCase):
     @staticmethod
     def test_main_wegostudy():
@@ -16,5 +17,6 @@ class PositiveTestCases(unittest.TestCase):
         methods.filter_by_study_area()
         methods.filter_by_city()
         methods.filter_by_program()
+        methods.schools()
         methods.logout()
         methods.tearDown()
