@@ -287,6 +287,27 @@ def commissions():
     sleep(2)
 
 
+def sort_by_dropdown_menu():
+    print(f'***************** Sort By Dropdown Menu  ******************')
+    driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="First Name"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Last Name"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Profile Created"]').click()
+    sleep(1.25)
+
+
+
 def filter_by_study_area():
     print(f' *********** Filter By Study Area *******************')
     driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
@@ -358,6 +379,7 @@ def schools():
 # edit_student_details()
 # view_application_list()
 # commissions()
+# sort_by_dropdown_menu()
 # filter_by_study_area()
 # filter_by_city()
 # filter_by_program()
