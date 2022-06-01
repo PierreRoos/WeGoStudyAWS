@@ -14,6 +14,7 @@ class PositiveTestCases(unittest.TestCase):
         methods.edit_student_details()
         methods.view_application_list()
         methods.commissions()
+        methods.sort_by_dropdown_menu()
         methods.filter_by_study_area()
         methods.filter_by_city()
         methods.filter_by_program()
