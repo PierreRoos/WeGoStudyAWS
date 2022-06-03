@@ -40,3 +40,4 @@ On GitHub web interface, submit a **pull request** and ask for a **review.** The
 
 
 # WeGoStudyAWS1
+# WeGoStudy_AWS
