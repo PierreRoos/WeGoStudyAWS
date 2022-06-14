@@ -20,6 +20,12 @@ class PositiveTestCases(unittest.TestCase):
         methods.filter_by_program()
         methods.schools()
         methods.schools_sort_by()
+        methods.add_my_favorite()
+        methods.connect_to_wegostudy()
+        methods.visit_college_website()
+        methods.tuition()
+        methods.apply_now()
+        methods.study_area_prog_lev()
         methods.logout()
         methods.tearDown()
         

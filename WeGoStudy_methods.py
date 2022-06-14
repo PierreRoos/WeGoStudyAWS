@@ -72,14 +72,7 @@ def login():
     print('------------ logged in successfully!-----------------')
 
 
-def logout():
-    driver.find_element(By.CSS_SELECTOR, 'span[class="my-auto mr-2 pf-name"]').click()
-    sleep(0.25)
-    driver.find_element(By.XPATH, '//a[contains(., "Log out")]').click()
-    sleep(0.25)
-    driver.find_element(By.ID, 'authentication').is_displayed()
-    sleep(0.25)
-    print('-----------------Signed out successfully.-----------------')
+
 
 
 def create_new_student():
@@ -422,6 +415,103 @@ def schools_sort_by():
     sleep(1.25)
 
 
+def add_my_favorite():
+    print(f' *********** Add My Favorite *******************')
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@class="col-12 col-lg-12 col-md-12"]//div[1]//div[3]//a[1]//div[1]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[@class="favorites-btn"]').click()
+    sleep(6)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@id="featured_institutes"]//div[1]//div[3]//a[1]//div[1]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//i[@class="fa fa-heart"]').click()
+    sleep(1.25)
+
+
+def connect_to_wegostudy():
+    print(f' *********** Connect To We GoStudy *******************')
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//div[@class="col-12 col-lg-12 col-md-12"]//div[1]//div[3]//a[1]//div[1]').click()
+    sleep(4)
+    original_window = driver.current_window_handle
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Connect to WeGoStudy"]').click()
+    sleep(4)
+    driver.switch_to.window(original_window)
+
+
+
+def visit_college_website():
+    print(f' *********** Visit College Website *******************')
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//div[@class="col-12 col-lg-12 col-md-12"]//div[1]//div[3]//a[1]//div[1]').click()
+    sleep(8)
+    original_window = driver.current_window_handle
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Visit College Website"]').click()
+    sleep(8)
+    driver.switch_to.window(original_window)
+
+
+
+def tuition():
+    print(f' *********** Tuition *******************')
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//div[@class="col-12 col-lg-12 col-md-12"]//div[1]//div[3]//a[1]//div[1]').click()
+    sleep(6)
+    original_window = driver.current_window_handle
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[@class="btn btn-green btn-sm pull-right"]').click()
+    sleep(4)
+    driver.switch_to.window(original_window)
+
+
+
+def apply_now():
+    print(f' *********** Apply Now *******************')
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//div[@class="col-12 col-lg-12 col-md-12"]//div[1]//div[3]//a[1]//div[1]').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//a[@class="btn btn-blue btn-sm"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//button[normalize-space()="Close"]').click()
+    sleep(1.25)
+
+
+
+def study_area_prog_lev():
+    print(f' *********** Study Area *******************')
+    driver.find_element(By.XPATH, '//a[contains(.,  "Schools")]').click()
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//h3[normalize-space()="British Columbia Institute of Technology"]').is_displayed()
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//div[3]//div[3]//a[1]//div[1]').click()
+    sleep(0.25)
+    Select(driver.find_element(By.ID, 'study_area')).select_by_value('Computer, information and services')
+    sleep(0.25)
+    Select(driver.find_element(By.ID, 'level')).select_by_value('Bachelor of Technology')
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//input[@value="GO"]').click()
+    sleep(0.25)
+
+
+
+def logout():
+    driver.find_element(By.CSS_SELECTOR, 'span[class="my-auto mr-2 pf-name"]').click()
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//a[contains(., "Log out")]').click()
+    sleep(0.25)
+    driver.find_element(By.ID, 'authentication').is_displayed()
+    sleep(0.25)
+    print('-----------------Signed out successfully.-----------------')
+
 
 
 # setUp()
@@ -438,5 +528,12 @@ def schools_sort_by():
 # filter_by_program()
 # schools()
 # schools_sort_by()
+# add_my_favorite()
+# connect_to_wegostudy()
+# visit_college_website()
+# tuition()
+# apply_now()
+# study_area_prog_lev()
+
 # logout()
 # tearDown()
